@@ -3,12 +3,14 @@
 
 namespace Helper 
 {
-	int GetValidatedInt(const char* strMessage, int nMinimumRange = 0, int nMaximumRange = 0);
-	int PrintMenu(const std::string* menuOptions[]); //TODO: Define method
-	void ClearIgnoreBuffer(); //TODO: Define method
-	void PrintInteger(int* valueToPrint); //TODO: Define method to print binary, hex or oct
+	//Declare Methods here-----------------------------------------------------------------------
+	int GetValidatedInt(const char* strMessage, int nMinimumRange = 0, int nMaximumRange = 0);//TODO: Exits after 1 reattempt with incorrect input
+	int PrintMenu(const std::string* menuOptions[]); //Done
+	void ClearIgnoreBuffer(); //Done
+	void PrintInteger(int* valueToPrint); //Done
 	int GenerateRandomNumber(const int* minRange = 0, const int* maxRange=0); //TODO: Define method
 
+	//GetValidatedInt----------------------------------------------------------------------------------
 	int GetValidatedInt(const char* strMessage, int nMinimumRange, int nMaximumRange)
 	{
 		int userInput;
@@ -27,6 +29,7 @@ namespace Helper
 			}
 			else//loop back to get input again
 			{
+				std::cin.clear();
 				std::cin.ignore();
 				std::cout << "Please try again: ";
 				std::cin >> userInput;
@@ -40,18 +43,28 @@ namespace Helper
 			std::cin >> userInput;
 		}
 	}
-	/*int PrintMenu(const std::string menuOptions[], size_t menuLength) //TODO: Define method
+	
+
+	//PrintMenu-------------------------------------------------------------------------
+	int PrintMenu(const std::string menuOptions[], size_t menuLength)
 	{
 		for (size_t i = 0; i < menuLength; i++)
 		{
 			std::cout << i + 1 << ". " << menuOptions[i] << std::endl;
 		}
 
-	}*/
-	void ClearIgnoreBuffer() //TODO: Define method
-	{
-
 	}
+	//----------------------------------------------------------------------------------
+
+	//ClearIgnoreBuffer-----------------------------------------------------------------
+	void ClearIgnoreBuffer()
+	{
+		std::cin.ignore();
+		std::cin.clear();
+	}
+	//----------------------------------------------------------------------------------
+
+	//PrintInteger----------------------------------------------------------------------
 	void PrintInteger(const unsigned int valueToPrint) //TODO: Define method to print binary, hex or oct
 	{
 		int menuChoice;
@@ -86,8 +99,11 @@ namespace Helper
 			break;
 		}
 	}
-	/*int GenerateRandomNumber(const int* minRange = 0, const int* maxRange) //TODO: Define method
-	{
 
-	}*/
+	//GenerateRandomNumber--------------------------------------------------------------------------
+	int GenerateRandomNumber(const int minRange = 0, const int maxRange) //TODO: Define method
+	{
+		int newNum = rand() % maxRange + minRange;//random number between 0 and 100
+		return newNum;
+	}
 }
